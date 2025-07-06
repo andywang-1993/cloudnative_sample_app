@@ -4,7 +4,7 @@ FROM docker.io/library/maven:3.3-jdk-8 as builder
 COPY . .
 RUN mvn clean install
 
-FROM openliberty/open-liberty:springBoot2-ubi-min as staging
+FROM docker.io/openliberty/open-liberty:springBoot2-ubi-min as staging
 
 COPY --chown=1001:0 --from=builder /target/cloudnativesampleapp-1.0-SNAPSHOT.jar /config/app.jar
 RUN springBootUtility thin \
